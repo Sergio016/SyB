@@ -1,0 +1,46 @@
+services:
+  api:
+    image: fastapi
+    container_name: api
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    networks:
+      - mynetwork
+
+  db:
+    image: postgres
+    container_name: db
+    environment:
+        POSTGRES_DB: syb
+        POSTGRES_USER: postgres
+        POSTGRES_PASSWORD: 1234
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - mynetwork
+
+  nginx:
+    image: nginx:alpine
+    container_name: nginx-container
+    ports:
+      - "80:80"
+    volumes:
+      - ./src:/app/src  
+      - ./docker/nginx.conf:/etc/nginx/nginx.conf  
+    depends_on:
+      - api
+    networks:
+      - mynetwork
+    entrypoint: /bin/sh -c "until curl -s api:8000/health; do echo 'Waiting for API...'; sleep 5; done; nginx -g 'daemon off;'"
+
+networks:
+  mynetwork:
+    driver: bridge
+
+volumes:
+  postgres_data:
