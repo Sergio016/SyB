@@ -1,46 +1,35 @@
 services:
-  api:
-    image: fastapi
-    container_name: api
-    build:
-      context: .
-      dockerfile: docker/Dockerfile
-    ports:
-      - "8000:8000"
-    depends_on:
-      - db
-    networks:
-      - mynetwork
+    db:
+        image: postgres:latest
+        environment:
+            POSTGRES_USER: postgres
+            POSTGRES_PASSWORD: 1234
+            POSTGRES_DB: syb
+        ports:
+            - "5433:5432"
+        volumes:
+            - postgres_data:/var/lib/postgresql/data
+            - ./sql:/docker-entrypoint-initdb.d
 
-  db:
-    image: postgres
-    container_name: db
-    environment:
-        POSTGRES_DB: syb
-        POSTGRES_USER: postgres
-        POSTGRES_PASSWORD: 1234
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-    networks:
-      - mynetwork
+    backend:
+        build: ./backend  # Ruta al directorio donde está tu Dockerfile y la app.js
+        depends_on:
+            - db
+        ports:
+            - "3000:3000"
+        environment:
+            DATABASE_URL: "postgres://postgres:1234@db:5432/syb"
 
-  nginx:
-    image: nginx:alpine
-    container_name: nginx-container
-    ports:
-      - "80:80"
-    volumes:
-      - ./src:/app/src  
-      - ./docker/nginx.conf:/etc/nginx/nginx.conf  
-    depends_on:
-      - api
-    networks:
-      - mynetwork
-    entrypoint: /bin/sh -c "until curl -s api:8000/health; do echo 'Waiting for API...'; sleep 5; done; nginx -g 'daemon off;'"
-
-networks:
-  mynetwork:
-    driver: bridge
+    nginx:
+        image: nginx:latest
+        volumes:
+            - ./src/html:/usr/share/nginx/html
+            - ./src/js:/usr/share/nginx/html/js      # Mapea los archivos HTML
+            - ./nginx/nginx.conf:/etc/nginx/nginx.conf  # Mapea el archivo nginx.conf
+        ports:
+            - "80:80"
+        depends_on:
+            - backend
 
 volumes:
-  postgres_data:
+    postgres_data:

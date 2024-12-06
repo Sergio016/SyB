@@ -1,36 +1,39 @@
-// URL de la API
-const API_URL = "/api/trabajadores"; 
+document.addEventListener("DOMContentLoaded", function() {
+  // Realizamos una solicitud a la API para obtener los datos
+  fetch('/api/trabajadores')
+      .then(response => response.json())  // Convierte la respuesta a formato JSON
+      .then(data => {
+          const tbody = document.querySelector('tbody');  // Selecciona el cuerpo de la tabla
 
-// Función para obtener los datos de la API
-async function fetchTrabajadores() {
-  try {
-    const response = await fetch(API_URL);
-    if (!response.ok) throw new Error("Error al obtener los datos");
-    const trabajadores = await response.json();
-    renderTrabajadores(trabajadores);
-  } catch (error) {
-    console.error("Error:", error);
-  }
-}
+          // Verificamos si se recibió algún dato
+          if (data.length > 0) {
+              data.forEach(trabajador => {
+                  // Creamos una nueva fila de tabla por cada trabajador
+                  const row = document.createElement('tr');
 
-// Función para renderizar los datos en la tabla
-function renderTrabajadores(trabajadores) {
-  const tableBody = document.querySelector("#trabajadores-table tbody");
-  tableBody.innerHTML = ""; 
+                  // Creamos celdas para cada dato del trabajador
+                  const nombreCell = document.createElement('td');
+                  nombreCell.textContent = trabajador.nombre;
+                  row.appendChild(nombreCell);
 
-  trabajadores.forEach((trabajador) => {
-    const row = document.createElement("tr");
+                  const puestoCell = document.createElement('td');
+                  puestoCell.textContent = trabajador.puesto;
+                  row.appendChild(puestoCell);
 
-    row.innerHTML = `
-      <td>${trabajador.id}</td>
-      <td>${trabajador.nombre}</td>
-      <td>${trabajador.puesto}</td>
-      <td>${trabajador.fecha_registro}</td>
-    `;
-
-    tableBody.appendChild(row);
-  });
-}
-
-// Llamar a la función al cargar la página
-document.addEventListener("DOMContentLoaded", fetchTrabajadores);
+                  // Añadimos la fila al cuerpo de la tabla
+                  tbody.appendChild(row);
+              });
+          } else {
+              // Si no se encuentran trabajadores, mostramos un mensaje
+              const row = document.createElement('tr');
+              const cell = document.createElement('td');
+              cell.colSpan = 2;
+              cell.textContent = "No hay trabajadores disponibles.";
+              row.appendChild(cell);
+              tbody.appendChild(row);
+          }
+      })
+      .catch(error => {
+          console.error("Error al obtener los datos de la API:", error);
+      });
+});
