@@ -4,48 +4,258 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página de Inicio</title>
+    <title>Nuestra Empresa - Soluciones Innovadoras</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #007BFF;
+            --secondary-color: #333;
+            --light-bg: #f9f9f9;
+            --white: #fff;
+            --text-color: #333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            background-color: var(--light-bg);
+            color: var(--text-color);
+        }
+
+        /* Header Styles */
+        header {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 2rem 1.5rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(rgba(0, 123, 255, 0.8), rgba(0, 123, 255, 0.9));
+            transform: skewY(-6deg);
+            transform-origin: top left;
+            z-index: 1;
+        }
+
+        header h1,
+        header p {
+            position: relative;
+            z-index: 2;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Navigation Styles */
+        nav {
+            background-color: var(--secondary-color);
+            padding: 1rem;
+            text-align: center;
+        }
+
+        nav a {
+            color: var(--white);
+            text-decoration: none;
+            margin: 0 1rem;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 50%;
+            background-color: var(--primary-color);
+            transition: all 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--primary-color);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+            left: 0;
+        }
+
+        /* Main Content Styles */
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background-color: var(--white);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        .container h2 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 0.5rem;
+        }
+
+        .features {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 2rem;
+        }
+
+        .feature {
+            flex-basis: 30%;
+            background-color: var(--light-bg);
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .feature:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 123, 255, 0.1);
+        }
+
+        .feature i {
+            color: var(--primary-color);
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: var(--secondary-color);
+            color: var(--white);
+            text-align: center;
+            padding: 2rem 1rem;
+        }
+
+        footer a {
+            color: var(--primary-color);
+            text-decoration: none;
+            margin: 0 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive Design */
+        @media screen and (max-width: 768px) {
+            nav {
+                display: flex;
+                flex-direction: column;
+            }
+
+            nav a {
+                margin: 0.5rem 0;
+            }
+
+            .features {
+                flex-direction: column;
+            }
+
+            .feature {
+                margin-bottom: 1rem;
+            }
+        }
+    </style>
 </head>
 
 <body>
-
     <!-- Header -->
     <header>
-        <h1>Bienvenido a Nuestra Página</h1>
-        <p>Descubre nuestras ofertas, productos y mucho más.</p>
+        <h1>Bienvenido a Nuestra Empresa</h1>
+        <p>Soluciones innovadoras para tu negocio</p>
     </header>
 
     <!-- Navigation -->
     <nav>
-        <a href="/productos">Productos</a>
-        <a href="/localizacion">Localizacion</a>
-        <a href="/equipo">Equipo</a>
-        <a href="/blog">Blog</a>
-        <a href="/at-cliente">Atencion al cliente</a>
-        <a href="/ofertas">Ofertas</a>
+        <a href="/productos" aria-label="Ir a la sección de productos">
+            <i class="fas fa-box"></i> Productos
+        </a>
+        <a href="/localizacion" aria-label="Ir a la sección de localización">
+            <i class="fas fa-map-marker-alt"></i> Localización
+        </a>
+        <a href="/equipo" aria-label="Conocer nuestro equipo">
+            <i class="fas fa-users"></i> Equipo
+        </a>
+        <a href="/blog" aria-label="Visitar nuestro blog">
+            <i class="fas fa-blog"></i> Blog
+        </a>
+        <a href="/at-cliente" aria-label="Atención al cliente">
+            <i class="fas fa-headset"></i> Atención al cliente
+        </a>
+        <a href="/ofertas" aria-label="Ver nuestras ofertas">
+            <i class="fas fa-tags"></i> Ofertas
+        </a>
     </nav>
 
     <!-- Main Content -->
-    <div class="container">
+    <main class="container">
         <h2>Bienvenidos a nuestra empresa</h2>
-        <p>En esta página encontrarás todo lo que necesitas saber sobre nuestros productos, ofertas y servicios. Nos
-            complace ofrecerte lo mejor de nuestro catálogo.</p>
+        <p>
+            En esta página encontrarás todo lo que necesitas saber sobre nuestros productos, ofertas y servicios.
+            Nos complace ofrecerte lo mejor de nuestro catálogo con soluciones de vanguardia.
+        </p>
 
-        <h3>¿Qué Ofrecemos?</h3>
-        <ul>
-            <li>Productos de alta calidad</li>
-            <li>Ofertas exclusivas</li>
-            <li>Servicio de atención al cliente 24/7</li>
-        </ul>
+        <div class="features">
+            <div class="feature">
+                <i class="fas fa-star"></i>
+                <h3>Productos de Calidad</h3>
+                <p>Ofrecemos productos de la más alta calidad, seleccionados cuidadosamente para satisfacer tus
+                    necesidades.</p>
+            </div>
+            <div class="feature">
+                <i class="fas fa-percent"></i>
+                <h3>Ofertas Exclusivas</h3>
+                <p>Descubre promociones increíbles que te permitirán ahorrar y obtener lo mejor al mejor precio.</p>
+            </div>
+            <div class="feature">
+                <i class="fas fa-headset"></i>
+                <h3>Soporte 24/7</h3>
+                <p>Nuestro equipo de atención al cliente está disponible las 24 horas para resolver cualquier duda.</p>
+            </div>
+        </div>
 
-        <p>Explora nuestra tienda y aprovecha nuestras promociones especiales. ¡No te lo pierdas!</p>
-    </div>
+        <p class="call-to-action">
+            Explora nuestra tienda y aprovecha nuestras promociones especiales.
+            ¡No dejes pasar esta oportunidad única!
+        </p>
+    </main>
 
     <!-- Footer -->
     <footer>
         <p>&copy; 2024 Nuestra Empresa. Todos los derechos reservados.</p>
+        <div>
+            <a href="/privacidad">Política de privacidad</a> |
+            <a href="/terminos">Términos y condiciones</a>
+        </div>
+        <div class="social-links">
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        </div>
     </footer>
-
 </body>
 
 </html>
