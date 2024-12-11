@@ -1,51 +1,51 @@
 document.addEventListener("DOMContentLoaded", function() {
-  // Realizamos una solicitud a la API para obtener los datos
-  fetch('/api/localizacion')
-      .then(response => response.json())  // Convierte la respuesta a formato JSON
-      .then(data => {
-          const tbody = document.querySelector('tbody');  // Selecciona el cuerpo de la tabla
+    console.log("DOM cargado");
 
-          // Verificamos si se recibió algún dato
-          if (data.length > 0) {
-              data.forEach(localizacion => {
-                  // Creamos una nueva fila de tabla por cada localizacion
-                  const row = document.createElement('tr');
+    fetch('/api/productos')
+        .then(response => response.json())
+        .then(data => {
+            console.log("Datos recibidos de la API:", data); // Depuración: verifica los datos en la consola
 
-                  // Creamos celdas para cada dato de la localizacion
-                  const nombreCell = document.createElement('td');
-                  nombreCell.textContent = ofertas.nombre_sucursal;
-                  row.appendChild(nombreCell);
+            const tbody = document.querySelector('tbody'); // Selecciona el <tbody> de la tabla
+            if (!tbody) {
+                console.error("No se encontró el elemento <tbody> en el DOM.");
+                return;
+            }
 
-                  const puestoCell = document.createElement('td');
-                  puestoCell.textContent = ofertas.direccion;
-                  row.appendChild(puestoCell);
+            if (data.length > 0) {
+                data.forEach(producto => {
+                    const row = document.createElement('tr'); // Crea una nueva fila
 
-                  const puestoCell = document.createElement('td');
-                  puestoCell.textContent = ofertas.ciudad;
-                  row.appendChild(puestoCell);
+                    // Crea celdas y añade los datos
+                    const nombreCell = document.createElement('td');
+                    nombreCell.textContent = producto.nombre;
+                    row.appendChild(nombreCell);
 
-                  const puestoCell = document.createElement('td');
-                  puestoCell.textContent = ofertas.pais;
-                  row.appendChild(puestoCell);
+                    const descripcionCell = document.createElement('td');
+                    descripcionCell.textContent = producto.descripcion;
+                    row.appendChild(descripcionCell);
 
-                  const puestoCell = document.createElement('td');
-                  puestoCell.textContent = ofertas.fecha_apertura;
-                  row.appendChild(puestoCell);
+                    const precioCell = document.createElement('td');
+                    precioCell.textContent = `$${parseFloat(producto.precio).toFixed(2)}`;
+                    row.appendChild(precioCell);
 
-                  // Añadimos la fila al cuerpo de la tabla
-                  tbody.appendChild(row);
-              });
-          } else {
-              // Si no se encuentran productos, mostramos un mensaje
-              const row = document.createElement('tr');
-              const cell = document.createElement('td');
-              cell.colSpan = 2;
-              cell.textContent = "No hay localizaciones disponibles.";
-              row.appendChild(cell);
-              tbody.appendChild(row);
-          }
-      })
-      .catch(error => {
-          console.error("Error al obtener los datos de la API:", error);
-      });
+                    const stockCell = document.createElement('td');
+                    stockCell.textContent = producto.stock;
+                    row.appendChild(stockCell);
+
+                    tbody.appendChild(row); // Añade la fila al <tbody>
+                });
+            } else {
+                // Muestra un mensaje si no hay productos
+                const row = document.createElement('tr');
+                const cell = document.createElement('td');
+                cell.colSpan = 4; // Cubre todas las columnas
+                cell.textContent = "No hay productos disponibles.";
+                row.appendChild(cell);
+                tbody.appendChild(row);
+            }
+        })
+        .catch(error => {
+            console.error("Error al obtener los datos de la API:", error);
+        });
 });

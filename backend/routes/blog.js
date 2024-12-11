@@ -17,7 +17,7 @@ router.get('/api/blog', async (req, res) => {
         res.json(result.rows); // Devuelve los datos como JSON
     } catch (err) {
         console.error(err);
-        res.status(500).send('Error al obtener los trabajadores');
+        res.status(500).send('Error al obtener los blogs');
     }
 });
 

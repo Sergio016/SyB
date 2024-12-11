@@ -7,26 +7,26 @@ document.addEventListener("DOMContentLoaded", function() {
 
           // Verificamos si se recibió algún dato
           if (data.length > 0) {
-              data.forEach(productos => {
+              data.forEach(producto => {
                   // Creamos una nueva fila de tabla por cada producto
                   const row = document.createElement('tr');
 
                   // Creamos celdas para cada dato del productos
                   const nombreCell = document.createElement('td');
-                  nombreCell.textContent = ofertas.nombre;
+                  nombreCell.textContent = producto.nombre;
                   row.appendChild(nombreCell);
 
-                  const puestoCell = document.createElement('td');
-                  puestoCell.textContent = ofertas.descripcion;
-                  row.appendChild(puestoCell);
+                  const descripcionCell = document.createElement('td');
+                  descripcionCell.textContent = producto.descripcion;
+                  row.appendChild(descripcionCell);
 
-                  const puestoCell = document.createElement('td');
-                  puestoCell.textContent = ofertas.precio;
-                  row.appendChild(puestoCell);
+                  const precioCell = document.createElement('td');
+                  precioCell.textContent = producto.precio;
+                  row.appendChild(precioCell);
 
-                  const puestoCell = document.createElement('td');
-                  puestoCell.textContent = ofertas.stock;
-                  row.appendChild(puestoCell);
+                  const stockCell = document.createElement('td');
+                  stockCell.textContent = producto.stock;
+                  row.appendChild(stockCell);
 
                   // Añadimos la fila al cuerpo de la tabla
                   tbody.appendChild(row);
@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", function() {
               // Si no se encuentran productos, mostramos un mensaje
               const row = document.createElement('tr');
               const cell = document.createElement('td');
-              cell.colSpan = 2;
+              cell.colSpan = 4;
               cell.textContent = "No hay productos disponibles.";
               row.appendChild(cell);
               tbody.appendChild(row);
@@ -43,5 +43,5 @@ document.addEventListener("DOMContentLoaded", function() {
       })
       .catch(error => {
           console.error("Error al obtener los datos de la API:", error);
-      });
+      });ºº
 });

@@ -12,27 +12,27 @@ document.addEventListener("DOMContentLoaded", function() {
                   const row = document.createElement('tr');
 
                   // Creamos celdas para cada dato de la oferta
-                  const nombreCell = document.createElement('td');
-                  nombreCell.textContent = ofertas.producto_id;
-                  row.appendChild(nombreCell);
+                  const idCell = document.createElement('td');
+                  idCell.textContent = ofertas.producto_id;
+                  row.appendChild(idCell);
 
-                  const puestoCell = document.createElement('td');
-                  puestoCell.textContent = ofertas.descripcion;
-                  row.appendChild(puestoCell);
+                  const descripcionCell = document.createElement('td');
+                  descripcionCell.textContent = ofertas.descripcion;
+                  row.appendChild(descripcionCell);
 
-                  const puestoCell = document.createElement('td');
-                  puestoCell.textContent = ofertas.fecha_inicio;
-                  row.appendChild(puestoCell);
+                  const fecha_inicioCell = document.createElement('td');
+                  fecha_inicioCell.textContent = ofertas.fecha_inicio;
+                  row.appendChild(fecha_inicioCell);
 
-                  const puestoCell = document.createElement('td');
-                  puestoCell.textContent = ofertas.fecha_fin;
-                  row.appendChild(puestoCell);
+                  const fecha_finCell = document.createElement('td');
+                  fecha_finCell.textContent = ofertas.fecha_fin;
+                  row.appendChild(fecha_finCell);
 
                   // Añadimos la fila al cuerpo de la tabla
                   tbody.appendChild(row);
               });
           } else {
-              // Si no se encuentran trabajadores, mostramos un mensaje
+              // Si no se encuentran ofertas, mostramos un mensaje
               const row = document.createElement('tr');
               const cell = document.createElement('td');
               cell.colSpan = 2;

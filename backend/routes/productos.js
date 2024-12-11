@@ -11,7 +11,7 @@ const pool = new Pool({
 });
 
 // Ruta para obtener todos las ofertas
-router.get('/api/ofertas', async (req, res) => {
+router.get('/api/productos', async (req, res) => {
     try {
         const result = await pool.query('SELECT * FROM productos');
         res.json(result.rows); // Devuelve los datos como JSON

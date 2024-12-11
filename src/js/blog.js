@@ -12,28 +12,26 @@ document.addEventListener("DOMContentLoaded", function() {
                   const row = document.createElement('tr');
 
                   // Creamos celdas para cada dato del blog
-                  const nombreCell = document.createElement('td');
-                  nombreCell.textContent = blog.titulo;
-                  row.appendChild(nombreCell);
+                  const tituloCell = document.createElement('td');
+                  tituloCell.textContent = blog.titulo;
+                  row.appendChild(tituloCell);
 
-                  const puestoCell = document.createElement('td');
-                  puestoCell.textContent = blog.contenido;
-                  row.appendChild(puestoCell);
+                  const contenidoCell = document.createElement('td');
+                  contenidoCell.textContent = blog.contenido;
+                  row.appendChild(contenidoCell);
 
-                  const puestoCell = document.createElement('td');
-                  puestoCell.textContent = blog.autor_id;
-                  row.appendChild(puestoCell);
-
-
+                  const autorCell = document.createElement('td');
+                  autorCell.textContent = blog.autor_id;
+                  row.appendChild(autorCell);
 
                   // Añadimos la fila al cuerpo de la tabla
                   tbody.appendChild(row);
               });
           } else {
-              // Si no se encuentran trabajadores, mostramos un mensaje
+              // Si no se encuentran blogs, mostramos un mensaje
               const row = document.createElement('tr');
               const cell = document.createElement('td');
-              cell.colSpan = 2;
+              cell.colSpan = 3;
               cell.textContent = "No hay blogs disponibles.";
               row.appendChild(cell);
               tbody.appendChild(row);
