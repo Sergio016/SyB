@@ -1,244 +1,482 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nuestra Empresa - Soluciones Innovadoras</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <style>
-        :root {
-    --primary-color: #D60000; /* Color rojo vibrante */
-    --secondary-color: #333;  /* Color oscuro para el fondo */
-    --white: #fff;            /* Color blanco para el texto */
-    --text-color: #f5f5f5;    /* Color de texto claro */
-    --accent-color: #ff5252;  /* Color de acento suave */
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: 'Arial', sans-serif;
-    line-height: 1.6;
-    background-color: var(--secondary-color);
-    color: var(--text-color);
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-}
-
-header {
-    color: var(--white);
-    position: relative;
-    padding: 4rem 2rem;
-    z-index: 2;
-}
-
-header h1 {
-    font-size: 5rem;
-    font-weight: bold;
-    letter-spacing: -3px;
-    margin-bottom: 1rem;
-    text-transform: uppercase;
-    color: var(--primary-color);
-}
-
-header p {
-    font-size: 1.5rem;
-    color: var(--accent-color);
-}
-
-main {
-    background: #222;
-    padding: 3rem;
-    border-radius: 10px;
-    max-width: 1200px;
-    width: 100%;
-    margin-top: 2rem;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
-    position: relative;
-    z-index: 1;
-}
-
-h2 {
-    color: var(--primary-color);
-    font-size: 3rem;
-    margin-bottom: 2rem;
-}
-
-.features {
-    display: flex;
-    justify-content: center;
-    gap: 3rem;
-    margin-top: 3rem;
-}
-
-.feature {
-    background: var(--secondary-color);
-    padding: 2rem;
-    border-radius: 15px;
-    width: 25%;
-    text-align: center;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-    transition: all 0.3s ease;
-}
-
-.feature:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
-}
-
-.feature i {
-    font-size: 3rem;
-    color: var(--primary-color);
-    margin-bottom: 1.5rem;
-}
-
-footer {
-    color: var(--white);
-    background-color: #111;
-    padding: 3rem 2rem;
-    position: relative;
-    width: 100%;
-    text-align: center;
-}
-
-footer p {
-    margin-bottom: 1rem;
-}
-
-footer a {
-    color: var(--primary-color);
-    text-decoration: none;
-    margin: 0 1rem;
-    transition: color 0.3s ease;
-}
-
-footer a:hover {
-    text-decoration: underline;
-}
-
-footer .social-links a {
-    color: var(--primary-color);
-    margin: 0 10px;
-    font-size: 1.8rem;
-    transition: color 0.3s ease;
-}
-
-footer .social-links a:hover {
-    color: var(--accent-color);
-}
-
-/* Responsive */
-@media screen and (max-width: 768px) {
-    header h1 {
-        font-size: 3rem;
-    }
-
-    main {
-        padding: 1.5rem;
-    }
-
-    .features {
-        flex-direction: column;
-        gap: 2rem;
-    }
-
-    .feature {
-        width: 80%;
-    }
-
-    footer .social-links {
-        display: flex;
-        justify-content: center;
-        gap: 10px;
-    }
-}
-
-    </style>
+    <!-- basic -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- mobile metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <!-- site metas -->
+    <title>SyB</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- bootstrap css -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <!-- style css -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- Responsive-->
+    <link rel="stylesheet" href="/css/responsive.css">
+    <!-- fevicon -->
+    <link rel="icon" href="/images/fevicon.png" type="image/gif" />
+    <!-- Scrollbar Custom CSS -->
+    <link rel="stylesheet" href="/css/jquery.mCustomScrollbar.min.css">
+    <!-- Tweaks for older IEs-->
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css"
+        media="screen">
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
 </head>
+<!-- body -->
 
-<body>
-    <!-- Header -->
+<body class="main-layout">
+    <!-- loader  -->
+    <div class="loader_bg">
+        <div class="loader"><img src="/images/loading.gif" alt="#" /></div>
+    </div>
+    <!-- end loader -->
+    <!-- header -->
     <header>
-        <h1>Bienvenido a Nuestra Empresa</h1>
-        <p>Soluciones innovadoras para tu negocio</p>
+        <!-- header inner -->
+        <div class="header">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col logo_section">
+                        <div class="full">
+                            <div class="center-desk">
+                                <div class="logo">
+                                    <a href="index.html"><img src="/images/original.png" alt="#" width="100"/></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9">
+                        <nav class="navigation navbar navbar-expand-md navbar-dark ">
+                            <button class="navbar-toggler" type="button" data-toggle="collapse"
+                                data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false"
+                                aria-label="Toggle navigation">
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+                            <div class="collapse navbar-collapse" id="navbarsExample04">
+                                <ul class="navbar-nav mr-auto">
+                                    <li class="nav-item active">
+                                        <a class="nav-link" href="index.html">Home</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="about.html">About</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="glasses.html">Productos</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="shop.html">Ofertas</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="contact.html">Contact Us</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="contact.html">Blog</a>
+                                    </li>
+                                    <li class="nav-item d_none login_btn">
+                                        <a class="nav-link" href="#">Login</a>
+                                    </li>
+                                    <li class="nav-item d_none">
+                                        <a class="nav-link" href="#">Register</a>
+                                    </li>
+                                    <li class="nav-item d_none sea_icon">
+                                        <a class="nav-link" href="#"><i class="fa fa-shopping-bag"
+                                                aria-hidden="true"></i><i class="fa fa-search"
+                                                aria-hidden="true"></i></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
     </header>
-
-    <!-- Navigation -->
-    <nav>
-        <a href="/productos" aria-label="Ir a la sección de productos">
-            <i class="fas fa-box"></i> Productos
-        </a>
-        <a href="/localizacion" aria-label="Ir a la sección de localización">
-            <i class="fas fa-map-marker-alt"></i> Localización
-        </a>
-        <a href="/equipo" aria-label="Conocer nuestro equipo">
-            <i class="fas fa-users"></i> Equipo
-        </a>
-        <a href="/blog" aria-label="Visitar nuestro blog">
-            <i class="fas fa-blog"></i> Blog
-        </a>
-        <a href="/at-cliente" aria-label="Atención al cliente">
-            <i class="fas fa-headset"></i> Atención al cliente
-        </a>
-        <a href="/ofertas" aria-label="Ver nuestras ofertas">
-            <i class="fas fa-tags"></i> Ofertas
-        </a>
-    </nav>
-
-    <!-- Main Content -->
-    <main class="container">
-        <h2>Bienvenidos a nuestra empresa</h2>
-        <p>
-            En esta página encontrarás todo lo que necesitas saber sobre nuestros productos, ofertas y servicios.
-            Nos complace ofrecerte lo mejor de nuestro catálogo con soluciones de vanguardia.
-        </p>
-
-        <div class="features">
-            <div class="feature">
-                <i class="fas fa-star"></i>
-                <h3>Productos de Calidad</h3>
-                <p>Ofrecemos productos de la más alta calidad, seleccionados cuidadosamente para satisfacer tus
-                    necesidades.</p>
+    <!-- end header inner -->
+    <!-- end header -->
+    <!-- banner -->
+    <section class="banner_main">
+        <div id="banner1" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-target="#banner1" data-slide-to="0" class="active"></li>
+                <li data-target="#banner1" data-slide-to="1"></li>
+                <li data-target="#banner1" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="container">
+                        <div class="carousel-caption">
+                            <div class="text-bg">
+                                <h1> <span class="blu">Welcome <br></span>To Salud y bienestar</h1>
+                                <figure><img src="/images/banner_img.png" alt="#" /></figure>
+                                <a class="read_more" href="#">Shop Now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="container">
+                        <div class="carousel-caption">
+                            <div class="text-bg">
+                                <h1> <span class="blu">Welcome <br></span>To Salud y Bienestar</h1>
+                                <figure><img src="/images/banner_img.png" alt="#" /></figure>
+                                <a class="read_more" href="#">Shop Now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="container">
+                        <div class="carousel-caption">
+                            <div class="text-bg">
+                                <h1> <span class="blu">Welcome <br></span>To Salud y Bienestar</h1>
+                                <figure><img src="/images/banner_img.png" alt="#" /></figure>
+                                <a class="read_more" href="#">Shop Now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="feature">
-                <i class="fas fa-percent"></i>
-                <h3>Ofertas Exclusivas</h3>
-                <p>Descubre promociones increíbles que te permitirán ahorrar y obtener lo mejor al mejor precio.</p>
-            </div>
-            <div class="feature">
-                <i class="fas fa-headset"></i>
-                <h3>Soporte 24/7</h3>
-                <p>Nuestro equipo de atención al cliente está disponible las 24 horas para resolver cualquier duda.</p>
+            <a class="carousel-control-prev" href="#banner1" role="button" data-slide="prev">
+                <i class="fa fa-arrow-left" aria-hidden="true"></i>
+            </a>
+            <a class="carousel-control-next" href="#banner1" role="button" data-slide="next">
+                <i class="fa fa-arrow-right" aria-hidden="true"></i>
+            </a>
+        </div>
+    </section>
+    <!-- end banner -->
+    <!-- about section -->
+    <div class="about">
+        <div class="container">
+            <div class="row d_flex">
+                <div class="col-md-5">
+                    <div class="about_img">
+                        <figure><img src="/images/about_img.png" alt="#" /></figure>
+                    </div>
+                </div>
+                <div class="col-md-7">
+                    <div class="titlepage">
+                        <h2>About Our Shop</h2>
+                        <p>En Salud y Bienestar, nos dedicamos a ofrecer productos frescos y de calidad que promuevan un
+                            estilo de vida saludable.
+                            Trabajamos con proveedores responsables para garantizar que encuentres lo mejor para ti y tu
+                            familia, siempre con un
+                            enfoque en el bienestar y la sostenibilidad.
+
+                            Tu salud es nuestra prioridad, y estamos aquí para acompañarte en cada paso hacia una vida
+                            más equilibrada y feliz.</p>
+                    </div>
+                    <a class="read_more" href="#">Read More</a>
+                </div>
             </div>
         </div>
+    </div>
+    <!-- about section -->
+    <!-- Our  Glasses section -->
+    <div class="glasses">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-10 offset-md-1">
+                    <div class="titlepage">
+                        <h2>Nuestros productos</h2>
+                        <p>En Salud y Bienestar, contamos con una amplia variedad de productos seleccionados
+                            especialmente para cuidar de ti y los
+                            tuyos. Desde frutas y verduras frescas hasta productos orgánicos y opciones libres de
+                            gluten, ofrecemos lo mejor para
+                            cada necesidad.
 
-        <p class="call-to-action">
-            Explora nuestra tienda y aprovecha nuestras promociones especiales.
-            ¡No dejes pasar esta oportunidad única!
-        </p>
-    </main>
+                            Nos esforzamos por garantizar la calidad y frescura en cada artículo, ayudándote a mantener
+                            un estilo de vida saludable
+                            sin comprometer el sabor ni la confianza. ¡Descubre todo lo que tenemos para ti!
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                    <div class="glasses_box">
+                        <figure><img src="/images/glass1.png" alt="#" /></figure>
+                        <h3><span class="blu">$</span>50</h3>
+                        <p>Products</p>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                    <div class="glasses_box">
+                        <figure><img src="/images/glass2.png" alt="#" /></figure>
+                        <h3><span class="blu">$</span>50</h3>
+                        <p>Sunglasses</p>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                    <div class="glasses_box">
+                        <figure><img src="images/glass3.png" alt="#" /></figure>
+                        <h3><span class="blu">$</span>50</h3>
+                        <p>Sunglasses</p>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                    <div class="glasses_box">
+                        <figure><img src="/images/glass4.png" alt="#" /></figure>
+                        <h3><span class="blu">$</span>50</h3>
+                        <p>Sunglasses</p>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                    <div class="glasses_box">
+                        <figure><img src="/images/glass5.png" alt="#" /></figure>
+                        <h3><span class="blu">$</span>50</h3>
+                        <p>Sunglasses</p>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                    <div class="glasses_box">
+                        <figure><img src="/images/glass6.png" alt="#" /></figure>
+                        <h3><span class="blu">$</span>50</h3>
+                        <p>Sunglasses</p>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                    <div class="glasses_box">
+                        <figure><img src="/images/glass7.png" alt="#" /></figure>
+                        <h3><span class="blu">$</span>50</h3>
+                        <p>Sunglasses</p>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                    <div class="glasses_box">
+                        <figure><img src="/images/glass8.png" alt="#" /></figure>
+                        <h3><span class="blu">$</span>50</h3>
+                        <p>Sunglasses</p>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <a class="read_more" href="#">Read More</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end Our  Glasses section -->
+    <!-- Our shop section -->
+    <div id="about" class="shop">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-5">
+                    <div class="shop_img">
+                        <figure><img src="/images/shop_img.png" alt="#" /></figure>
+                    </div>
+                </div>
+                <div class="col-md-7 padding_right0">
+                    <div class="max_width">
+                        <div class="titlepage">
+                            <h2>Los mejores productos en nuestra tienda</h2>
+                            <p>En Salud y Bienestar, encontrarás solo lo mejor. Seleccionamos cuidadosamente cada
+                                producto para asegurarnos de
+                                ofrecerte calidad, frescura y opciones saludables.
 
-    <!-- Footer -->
+                                Desde alimentos básicos hasta productos gourmet, nuestra tienda está diseñada para
+                                satisfacer tus necesidades y superar
+                                tus expectativas. ¡Ven y descubre por qué somos la elección preferida para un estilo de
+                                vida saludable!</p>
+                            <a class="read_more" href="#">Shop Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end Our shop section -->
+    <!-- clients section -->
+    <div class="clients">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="titlepage">
+                        <h2>Lo que nuestros clientes dicen de nosotros</h2>
+                        <p>Cada opinión cuenta y nos impulsa a seguir ofreciendo lo mejor. Nuestros clientes destacan la
+                            calidad de nuestros
+                            productos y la atención personalizada que brindamos.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div id="myCarousel" class="carousel slide clients_Carousel " data-ride="carousel">
+                        <ol class="carousel-indicators">
+                            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                            <li data-target="#myCarousel" data-slide-to="1"></li>
+                            <li data-target="#myCarousel" data-slide-to="2"></li>
+                        </ol>
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <div class="container">
+                                    <div class="carousel-caption ">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="clients_box">
+                                                    <figure><img src="/images/our.png" alt="#" /></figure>
+                                                    <h3>Maria G.</h3>
+                                                    <p>"¡Salud y Bienestar es mi lugar favorito para hacer compras!
+                                                        Encuentro productos frescos y saludables, y siempre recibo
+                                                        una atención excelente."</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <div class="container">
+                                    <div class="carousel-caption">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="clients_box">
+                                                    <figure><img src="/images/our.png" alt="#" /></figure>
+                                                    <h3>Carlos R.</h3>
+                                                    <p>"La variedad de productos es increíble y siempre tienen ofertas
+                                                        que valen la pena. Recomiendo esta tienda a todos mis
+                                                        amigos."</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <div class="container">
+                                    <div class="carousel-caption">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="clients_box">
+                                                    <figure><img src="/images/our.png" alt="#" /></figure>
+                                                    <h3>Lucia P.</h3>
+                                                    <p>"Me encanta que tengan opciones orgánicas y locales. Además, el
+                                                        equipo siempre está dispuesto a ayudar con una sonrisa."</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+                            <i class='fa fa-angle-left'></i>
+                        </a>
+                        <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+                            <i class='fa fa-angle-right'></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end clients section -->
+    <!-- contact section -->
+    <div id="contact" class="contact">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <form id="request" class="main_form">
+                        <div class="row">
+                            <div class="col-md-12 ">
+                                <h3>Contactanos</h3>
+                            </div>
+                            <div class="col-md-12 ">
+                                <input class="contactus" placeholder="Name" type="type" name="Name">
+                            </div>
+                            <div class="col-md-12">
+                                <input class="contactus" placeholder="Phone Number" type="type" name="Phone Number">
+                            </div>
+                            <div class="col-md-12">
+                                <input class="contactus" placeholder="Email" type="type" name="Email">
+                            </div>
+                            <div class="col-md-12">
+                                <input class="contactusmess" placeholder="Message" type="type" Message="Name">
+                            </div>
+                            <div class="col-md-12">
+                                <button class="send_btn">Send</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="map_section">
+                <div id="map">
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <!-- end contact section -->
+    <!--  footer -->
     <footer>
-        <p>&copy; 2024 Nuestra Empresa. Todos los derechos reservados.</p>
-        <div>
-            <a href="/privacidad">Política de privacidad</a> |
-            <a href="/terminos">Términos y condiciones</a>
-        </div>
-        <div class="social-links">
-            <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <div class="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 offset-md-2">
+                        <ul class="location_icon">
+                            <li><a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i></a><br> Location</li>
+                            <li><a href="#"><i class="fa fa-phone" aria-hidden="true"></i></a><br> +01 1234567890</li>
+                            <li><a href="#"><i class="fa fa-envelope" aria-hidden="true"></i></a><br> demo@gmail.com
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p>© 2019 All Rights Reserved. Design by<a href="https://html.design/"> Free Html
+                                    Templates</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </footer>
+    <!-- end footer -->
+    <!-- Javascript files-->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/popper.min.js"></script>
+    <script src="/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/jquery-3.0.0.min.js"></script>
+    <!-- sidebar -->
+    <script src="/js/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="/js/custom.js"></script>
+    <script>
+        // This example adds a marker to indicate the position of Bondi Beach in Sydney,
+        // Australia.
+        function initMap() {
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 11,
+                center: { lat: 40.645037, lng: -73.880224 },
+            });
+
+            var image = '/images/maps-and-flags.png';
+            var beachMarker = new google.maps.Marker({
+                position: { lat: 40.645037, lng: -73.880224 },
+                map: map,
+                icon: image
+            });
+        }
+    </script>
+    <!-- google map js -->
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA8eaHt9Dh5H57Zh0xVTqxVdBFCvFMqFjQ&callback=initMap"></script>
+    <!-- end google map js -->
 </body>
 
 </html>
