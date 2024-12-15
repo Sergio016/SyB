@@ -1,43 +1,43 @@
-document.addEventListener("DOMContentLoaded", function() {
-  // Realizamos una solicitud a la API para obtener los datos
-  fetch('/api/blog')
-      .then(response => response.json())  // Convierte la respuesta a formato JSON
-      .then(data => {
-          const tbody = document.querySelector('tbody');  // Selecciona el cuerpo de la tabla
+document.addEventListener("DOMContentLoaded", function () {
+    fetch('/api/blog')
+        .then(response => response.json())
+        .then(data => {
+            const container = document.getElementById('productos-container');
 
-          // Verificamos si se recibió algún dato
-          if (data.length > 0) {
-              data.forEach(blog => {
-                  // Creamos una nueva fila de tabla por cada trabajador
-                  const row = document.createElement('tr');
+            if (data.length > 0) {
+                data.forEach(blog => {
+                    const card = document.createElement('div');
+                    card.classList.add('col-md-4');
 
-                  // Creamos celdas para cada dato del blog
-                  const tituloCell = document.createElement('td');
-                  tituloCell.textContent = blog.titulo;
-                  row.appendChild(tituloCell);
+                    // Aquí construimos la ruta de la imagen usando el título del blog
+                    const imageSrc = `/images/${blog.titulo.toLowerCase().replace(/\s+/g, '-')}.jpg`;
 
-                  const contenidoCell = document.createElement('td');
-                  contenidoCell.textContent = blog.contenido;
-                  row.appendChild(contenidoCell);
+                    // Formatear la fecha en un formato legible
+                    const date = new Date(blog.fecha_publicacion);
+                    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+                    const formattedDate = date.toLocaleDateString('es-ES', options);
 
-                  const autorCell = document.createElement('td');
-                  autorCell.textContent = blog.autor_id;
-                  row.appendChild(autorCell);
+                    card.innerHTML = `
+                        <div class="glasses_box">
+                            <figure>
+                                <img src="${imageSrc}" alt="${blog.titulo}">
+                            </figure>
+                            <h3>${blog.titulo}</h3>
+                            <p>${blog.contenido}</p>
+                            <p><strong>Autor:</strong> ${blog.autor_nombre}</p>
+                            <p><strong>Fecha de publicación:</strong> ${formattedDate}</p> <!-- Fecha formateada -->
+                        </div>
+                    `;
 
-                  // Añadimos la fila al cuerpo de la tabla
-                  tbody.appendChild(row);
-              });
-          } else {
-              // Si no se encuentran blogs, mostramos un mensaje
-              const row = document.createElement('tr');
-              const cell = document.createElement('td');
-              cell.colSpan = 3;
-              cell.textContent = "No hay blogs disponibles.";
-              row.appendChild(cell);
-              tbody.appendChild(row);
-          }
-      })
-      .catch(error => {
-          console.error("Error al obtener los datos de la API:", error);
-      });
+                    container.appendChild(card);
+                });
+            } else {
+                container.innerHTML = `
+                    <p class="no-products-message">No hay blogs disponibles en este momento.</p>
+                `;
+            }
+        })
+        .catch(error => {
+            console.error("Error al obtener los datos de la API:", error);
+        });
 });
