@@ -1,39 +1,35 @@
-document.addEventListener("DOMContentLoaded", function() {
-  // Realizamos una solicitud a la API para obtener los datos
-  fetch('/api/trabajadores')
-      .then(response => response.json())  // Convierte la respuesta a formato JSON
-      .then(data => {
-          const tbody = document.querySelector('tbody');  // Selecciona el cuerpo de la tabla
+document.addEventListener("DOMContentLoaded", function () {
+    fetch('/api/trabajadores')
+        .then(response => response.json())
+        .then(data => {
+            const container = document.getElementById('productos-container');
 
-          // Verificamos si se recibió algún dato
-          if (data.length > 0) {
-              data.forEach(trabajador => {
-                  // Creamos una nueva fila de tabla por cada trabajador
-                  const row = document.createElement('tr');
+            if (data.length > 0) {
+                data.forEach(trabajadores => {
+                    const card = document.createElement('div');
+                    card.classList.add('col-md-4');
 
-                  // Creamos celdas para cada dato del trabajador
-                  const nombreCell = document.createElement('td');
-                  nombreCell.textContent = trabajador.nombre;
-                  row.appendChild(nombreCell);
+                    // Construimos la ruta de la imagen usando el nombre del trabajador
+                    const imageSrc = `/images/${trabajadores.nombre.toLowerCase().replace(/\s+/g, '-')}.jpg`;
 
-                  const puestoCell = document.createElement('td');
-                  puestoCell.textContent = trabajador.puesto;
-                  row.appendChild(puestoCell);
+                    card.innerHTML = `
+                        <div class="glasses_box">
+                            <img src="${imageSrc}" alt="${trabajadores.nombre}" class="img-fluid">
+                            <p>ID: ${trabajadores.id}</p>
+                            <h3>${trabajadores.nombre}</h3>
+                            <p>Puesto: ${trabajadores.puesto}</p>
+                        </div>
+                    `;
 
-                  // Añadimos la fila al cuerpo de la tabla
-                  tbody.appendChild(row);
-              });
-          } else {
-              // Si no se encuentran trabajadores, mostramos un mensaje
-              const row = document.createElement('tr');
-              const cell = document.createElement('td');
-              cell.colSpan = 2;
-              cell.textContent = "No hay trabajadores disponibles.";
-              row.appendChild(cell);
-              tbody.appendChild(row);
-          }
-      })
-      .catch(error => {
-          console.error("Error al obtener los datos de la API:", error);
-      });
+                    container.appendChild(card);
+                });
+            } else {
+                container.innerHTML = `
+                    <p class="no-products-message">No hay trabajadores disponibles en este momento.</p>
+                `;
+            }
+        })
+        .catch(error => {
+            console.error("Error al obtener los datos de la API:", error);
+        });
 });

@@ -1,47 +1,51 @@
-document.addEventListener("DOMContentLoaded", function() {
-  // Realizamos una solicitud a la API para obtener los datos
-  fetch('/api/ofertas')
-      .then(response => response.json())  // Convierte la respuesta a formato JSON
-      .then(data => {
-          const tbody = document.querySelector('tbody');  // Selecciona el cuerpo de la tabla
+document.addEventListener("DOMContentLoaded", function () {
+    fetch('/api/ofertas')
+        .then(response => response.json())
+        .then(data => {
+            const container = document.getElementById('productos-container');
 
-          // Verificamos si se recibió algún dato
-          if (data.length > 0) {
-              data.forEach(ofertas => {
-                  // Creamos una nueva fila de tabla por cada oferta
-                  const row = document.createElement('tr');
+            if (data.length > 0) {
+                data.forEach(ofertas => {
+                    const card = document.createElement('div');
+                    card.classList.add('col-md-4');
 
-                  // Creamos celdas para cada dato de la oferta
-                  const idCell = document.createElement('td');
-                  idCell.textContent = ofertas.producto_id;
-                  row.appendChild(idCell);
+                    // Aquí construimos la ruta de la imagen usando el nombre del producto
+                    const imageSrc = `/images/${ofertas.producto_nombre.toLowerCase().replace(/\s+/g, '-')}.jpg`;
 
-                  const descripcionCell = document.createElement('td');
-                  descripcionCell.textContent = ofertas.descripcion;
-                  row.appendChild(descripcionCell);
+                    // Formateamos las fechas
+                    const formatDate = (dateString) => {
+                        const date = new Date(dateString);
+                        const day = String(date.getDate()).padStart(2, '0');
+                        const month = String(date.getMonth() + 1).padStart(2, '0'); // Los meses van de 0 a 11
+                        const year = date.getFullYear();
+                        return `${day}/${month}/${year}`;
+                    };
 
-                  const fecha_inicioCell = document.createElement('td');
-                  fecha_inicioCell.textContent = ofertas.fecha_inicio;
-                  row.appendChild(fecha_inicioCell);
+                    const fechaInicio = formatDate(ofertas.fecha_inicio);
+                    const fechaFin = formatDate(ofertas.fecha_fin);
 
-                  const fecha_finCell = document.createElement('td');
-                  fecha_finCell.textContent = ofertas.fecha_fin;
-                  row.appendChild(fecha_finCell);
+                    card.innerHTML = `
+                        <div class="glasses_box">
+                            <figure>
+                                <img src="${imageSrc}" alt="${ofertas.producto_nombre}">
+                            </figure>
+                            <h3>${ofertas.producto_nombre}</h3>
+                            <p>${ofertas.descripcion}</p>
+                            <p>Descuento: ${ofertas.descuento}%</p>
+                            <span>Fecha de inicio: ${fechaInicio}</span><br>
+                            <span>Fecha de fin: ${fechaFin}</span>
+                        </div>
+                    `;
 
-                  // Añadimos la fila al cuerpo de la tabla
-                  tbody.appendChild(row);
-              });
-          } else {
-              // Si no se encuentran ofertas, mostramos un mensaje
-              const row = document.createElement('tr');
-              const cell = document.createElement('td');
-              cell.colSpan = 2;
-              cell.textContent = "No hay ofertas disponibles.";
-              row.appendChild(cell);
-              tbody.appendChild(row);
-          }
-      })
-      .catch(error => {
-          console.error("Error al obtener los datos de la API:", error);
-      });
+                    container.appendChild(card);
+                });
+            } else {
+                container.innerHTML = `
+                    <p class="no-products-message">No hay productos disponibles en este momento.</p>
+                `;
+            }
+        })
+        .catch(error => {
+            console.error("Error al obtener los datos de la API:", error);
+        });
 });
